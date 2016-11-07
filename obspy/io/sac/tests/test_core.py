@@ -312,7 +312,7 @@ class CoreTestCase(unittest.TestCase):
         self.assertEqual(tr.stats.sac.b, 10.0)
         with open(self.file, 'rb') as fh:
             sac_ref_time = SACTrace.read(fh).reftime
-        self.assertEqual(sac_ref_time.timestamp, 269596800.0)
+        self.assertEqual(sac_ref_time.timestamp, 269596810.0 - 10.0)
         # change b to undefined and write (same case as if b == 0.0)
         # now sac reference time and reftime of seismogram must be the
         # same

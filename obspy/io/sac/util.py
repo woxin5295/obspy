@@ -351,8 +351,8 @@ def obspy_to_sac_header(stats, keep_sac_header=True):
             header.update(nztimes)
             b += (microsecond * 1e-6)
 
-            header['b'] = b
-            header['e'] = b + (stats['endtime'] - stats['starttime'])
+        header['b'] = b
+        header['e'] = b + (stats['endtime'] - stats['starttime'])
 
         # Merge some values from stats if they're missing in the SAC header
         # ObsPy issues 1204, 1457

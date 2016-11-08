@@ -90,7 +90,7 @@ KEYWORDS = [
     'focal mechanism', 'GCF', 'GSE1', 'GSE2', 'hob', 'Tau-P', 'imaging',
     'instrument correction', 'instrument simulation', 'IRIS', 'kinemetrics',
     'KML', 'magnitude', 'MiniSEED', 'misfit', 'mopad', 'MSEED', 'NDK', 'NERA',
-    'NERIES', 'NonLinLoc', 'NLLOC', 'observatory', 'ORFEUS', 'PDAS', 'picker',
+    'NERIES', 'NonLinLoc', 'NLLOC', 'Nordic', 'observatory', 'ORFEUS', 'PDAS', 'picker',
     'processing', 'PQLX', 'Q', 'real time', 'realtime', 'RESP',
     'response file', 'RT', 'SAC', 'sc3ml', 'SDS', 'SEED', 'SeedLink', 'SEG-2',
     'SEG Y', 'SEISAN', 'SeisHub', 'Seismic Handler', 'seismology',
@@ -277,6 +277,7 @@ ENTRY_POINTS = {
         'NDK = obspy.io.ndk.core',
         'NLLOC_HYP = obspy.io.nlloc.core',
         'NLLOC_OBS = obspy.io.nlloc.core',
+        'NORDIC = obspy.io.nordic.core',
         'CNV = obspy.io.cnv.core',
         'CMTSOLUTION = obspy.io.cmtsolution.core',
         'SHAPEFILE = obspy.io.shapefile.core',
@@ -315,6 +316,11 @@ ENTRY_POINTS = {
     'obspy.plugin.event.NLLOC_OBS': [
         'writeFormat = obspy.io.nlloc.core:write_nlloc_obs',
         ],
+    'obspy.plugin.event.NORDIC': [
+        'writeFormat = obspy.io.nordic.core:write_select',
+        'readFormat = obspy.io.nordic.core:read_nordic',
+        'isFormat = obspy.io.nordic.core:_is_sfile'
+        ],
     'obspy.plugin.event.CMTSOLUTION': [
         'isFormat = obspy.io.cmtsolution.core:_is_cmtsolution',
         'readFormat = obspy.io.cmtsolution.core:_read_cmtsolution',
@@ -339,6 +345,7 @@ ENTRY_POINTS = {
         'SC3ML = obspy.io.seiscomp.sc3ml',
         'SACPZ = obspy.io.sac.sacpz',
         'CSS = obspy.io.css.station',
+        'SEISAN = obspy.io.nordic.core',
         'SHAPEFILE = obspy.io.shapefile.core',
         'STATIONTXT = obspy.io.stationtxt.core',
         'KML = obspy.io.kml.core'
@@ -357,6 +364,9 @@ ENTRY_POINTS = {
         ],
     'obspy.plugin.inventory.CSS': [
         'writeFormat = obspy.io.css.station:_write_css',
+        ],
+    'obspy.plugin.inventory.SEISAN': [
+        'writeFormat = obspy.io.nordic.core:inventory_to_seisan',
         ],
     'obspy.plugin.inventory.SHAPEFILE': [
         'writeFormat = obspy.io.shapefile.core:_write_shapefile',

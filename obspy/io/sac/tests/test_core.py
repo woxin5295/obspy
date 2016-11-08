@@ -85,8 +85,10 @@ class CoreTestCase(unittest.TestCase):
             tr.write(tempfile, format='SACXY')
             tr1 = read(tempfile)[0]
 
-        tr.stats.pop('sac', None);
-        tr1.stats.pop('sac', None);
+        sac = tr.stats.pop('sac', None)
+        sac1 = tr1.stats.pop('sac', None)
+        del sac
+        del sac1
 
         self.assertEqual(tr, tr1)
 
@@ -626,8 +628,10 @@ class CoreTestCase(unittest.TestCase):
             fh.seek(0, 0)
             st2 = _read_sac_xy(fh)
 
-        st[0].stats.pop('sac', None);
-        st2[0].stats.pop('sac', None);
+        sac = st[0].stats.pop('sac', None)
+        sac1 = st2[0].stats.pop('sac', None)
+        del sac
+        del sac1
 
         self.assertEqual(st, st2)
 
@@ -643,8 +647,10 @@ class CoreTestCase(unittest.TestCase):
             tf.seek(0, 0)
             st2 = _read_sac_xy(tf)
 
-        st[0].stats.pop('sac', None);
-        st2[0].stats.pop('sac', None);
+        sac = st[0].stats.pop('sac', None)
+        sac1 = st2[0].stats.pop('sac', None)
+        del sac
+        del sac1
 
         self.assertEqual(st, st2)
 
@@ -911,9 +917,9 @@ class CoreTestCase(unittest.TestCase):
             tr.write(tf, format='SAC')
             tf.seek(0)
             tr1 = read(tf)[0]
-        self.assertEqual(tr.stats.starttime, reftime)
-        self.assertEqual(tr.stats.sac.a, a)
-        self.assertEqual(tr.stats.sac.b, b)
+        self.assertEqual(tr1.stats.starttime, reftime)
+        self.assertAlmostEqual(tr1.stats.sac.a, a, places=5)
+        self.assertEqual(tr1.stats.sac.b, b)
 
 
 def suite():
